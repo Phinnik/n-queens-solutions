@@ -1,1 +1,1 @@
-from .solutions_searcher import get_solution_dataset
+from .solutions_searcher import get_solution_dict
