@@ -4,21 +4,22 @@ import copy
 
 def get_possible_positions(side_length: int,
                            queens_positions: List[Tuple[int, int]] = None) -> List[Tuple[int, int]]:
-    if queens_positions is None or len(queens_positions) == 0:
-        return [(i, j) for i in range(side_length) for j in range(side_length)]
 
-    elif len(queens_positions) != 0:
-        last_queen = queens_positions[-1]
+    if queens_positions is None or len(queens_positions) == 0:
+        return [(0, j) for j in range(side_length)]
+
+    else:
+        last_queen_i = queens_positions[-1][0]
+        next_queen_i = last_queen_i + 1
+
         possible_positions = []
 
-        for i in range(last_queen[0] + 1, side_length):
-            for j in range(side_length):
-                is_possible = True
-                for queen_i, queen_j in queens_positions:
-                    if i == queen_i or j == queen_j or abs(i - queen_i) == abs(j - queen_j):
-                        is_possible = False
-                if is_possible:
-                    possible_positions.append((i, j))
+        for j in range(side_length):
+            for queen_i, queen_j in queens_positions:
+                if j == queen_j or abs(next_queen_i - queen_i) == abs(j - queen_j):
+                    break
+            else:
+                possible_positions.append((next_queen_i, j))
         return possible_positions
 
 
