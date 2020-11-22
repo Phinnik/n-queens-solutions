@@ -1,1 +1,0 @@
-from .solutions_searcher import get_solution_dict
